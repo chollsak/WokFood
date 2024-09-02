@@ -8,7 +8,8 @@ interface TestProps {
 
 export const Test: React.FC<TestProps> = ({ message }) => {
   return (
-    <div>{message || 'Test'}
+    <div className='text-red-600'>
+        {message || 'Test'}
     <Button variant="contained"/>
     </div>
   );

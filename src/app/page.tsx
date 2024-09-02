@@ -1,10 +1,13 @@
+'use client'
 import React from 'react';
-import { Test } from './components/Test';
+import { Box } from '@mui/material';
+import { SearchBar } from './components/SearchBar';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Test message="Hello, TypeScript!" />
+    <main>
+      <SearchBar />
+      <Box sx={{height:'10000px'}}></Box>
     </main>
   );
 }
