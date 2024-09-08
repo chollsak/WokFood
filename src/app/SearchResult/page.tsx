@@ -17,7 +17,7 @@ const SearchResult: React.FC = () => {
           <h1 className='text-black mb-5 text-xl font-semibold text-center'>
             Explore Your Favourite Dish!
           </h1>
-          <Box className="grid grid-cols-3 justify-items-center gap-x-8 gap-y-8 relative">
+          <Box className="grid grid-cols-4 justify-items-center gap-x-8 gap-y-8 relative">
             <FoodCard
               name="Ramen"
               description="Ramen is a noodle soup that first appeared in Japan..."
