@@ -5,21 +5,30 @@ import SearchIcon from '@mui/icons-material/Search';
 export const SearchBar: React.FC = () => {
     return (
         <Box sx={{ position: 'relative', width: '100%', height: '420px' }}>
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: `url('/img/bg3.jpg')`,
-                    backgroundSize: 'cover',
-                    backgroundColor:'black',
-                    backgroundPosition: 'end',
-                    opacity: 1,
-                    zIndex: -1, // Puts the background behind the content
-                }}
-            />
+<Box
+  sx={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundImage: `url('/img/bg3.jpg')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'end',
+    zIndex: -1, // Puts the background behind the content
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.4)', // Darkens the background
+      zIndex: -1, // Ensure the overlay is behind the content
+    },
+  }}
+/>
+
             <Box
                 sx={{
                     display: 'flex',
@@ -33,10 +42,11 @@ export const SearchBar: React.FC = () => {
                     zIndex: 1 // Ensures the content is above the background
                 }}
             >
-                <Typography variant="h2" sx={{
+                <Typography variant="h2" className='drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' sx={{
                     fontFamily: 'Literata, serif',
                     fontWeight: '600',
                     color: 'white'
+                    
                 }}>Travel Global, Eat Local.</Typography>
                 <TextField
                     variant="outlined"

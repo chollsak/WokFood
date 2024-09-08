@@ -48,7 +48,9 @@ export const Navbar: React.FC = () => {
             </Box>
 
             <Box className="flex gap-28 justify-center p-2 pb-4">
-                <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">Mockup</div>
+                <Link href="/">
+                    <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">Home</div>
+                </Link>
                 <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">Location</div>
                 <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">FoodMap</div>
                 <Link href="/SearchResult">
