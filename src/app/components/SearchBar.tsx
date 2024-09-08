@@ -1,6 +1,6 @@
 import { Box, TextField, Typography, InputAdornment, Button } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import "@fontsource/literata";
+
 
 export const SearchBar: React.FC = () => {
     return (
