@@ -14,8 +14,9 @@ export const SearchBar: React.FC = () => {
                     height: '100%',
                     backgroundImage: `url('/img/bg3.jpg')`,
                     backgroundSize: 'cover',
+                    backgroundColor:'black',
                     backgroundPosition: 'end',
-                    opacity: 0.6,
+                    opacity: 1,
                     zIndex: -1, // Puts the background behind the content
                 }}
             />
