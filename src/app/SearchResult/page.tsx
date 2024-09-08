@@ -14,10 +14,10 @@ const SearchResult: React.FC = () => {
       />
       <Box className="flex justify-center flex-col items-center">
         <Box className='bg-white  w-4/5 p-7' >
-          <h1 className='text-black mb-5 text-xl font-semibold'>
+          <h1 className='text-black mb-5 text-xl font-semibold text-center'>
             Explore Your Favourite Dish!
           </h1>
-          <Box className="grid grid-cols-3 gap-x-8 gap-y-8 relative">
+          <Box className="grid grid-cols-3 justify-items-center gap-x-8 gap-y-8 relative">
             <FoodCard
               name="Ramen"
               description="Ramen is a noodle soup that first appeared in Japan..."

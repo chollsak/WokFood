@@ -19,7 +19,7 @@ interface FoodCardProps {
 
 export const FoodCard: React.FC<FoodCardProps> = ({ name, img, description }) => {
   return (
-    <Link href='/'>
+    <Link className="w-fit" href='/'>
     <Card className='hover:opacity-80 transition duration-150 ease-out' sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
