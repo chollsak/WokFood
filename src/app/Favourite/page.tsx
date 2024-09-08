@@ -28,8 +28,8 @@ const Favourite: React.FC = () => {
 
     return (
         <main>
-            <Box className='my-20 flex justify-center'>
-                <Box className='bg-white w-full lg:w-3/5 relative'>
+            <Box className=' flex justify-center'>
+                <Box className=' w-full  relative'>
                     <TitleBar isSelect={isSelect} />
                     <Box className='flex flex-col gap-y-8 w-full mt-10 mb-24'>
                         <FavouriteCard

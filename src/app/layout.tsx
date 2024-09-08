@@ -6,7 +6,7 @@ import { Navbar } from "./components/Navbar";
 const poppins = Poppins({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], style: ['normal', 'italic'] });
 
 export const metadata: Metadata = {
-  title: "FoodLander",
+  title: "WookFood - The world foods!",
   description: "",
 };
 
@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      
+        <head>
+        <link rel="icon" href="/img/logo.png" />
+      </head>
       <body className={poppins.className}>
         <Navbar />
         <div className="w-full h-40 bg-white">
