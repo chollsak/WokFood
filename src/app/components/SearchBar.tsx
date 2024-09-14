@@ -1,4 +1,4 @@
-import { Box, TextField, Typography, InputAdornment, Button } from "@mui/material";
+import { Box, TextField, Typography, InputAdornment, Button, Link } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
 
@@ -74,7 +74,10 @@ export const SearchBar: React.FC = () => {
                         }
                     }}
                 />
-                <div className="text-md underline decoration-2 decoration-red-500">EXPLORE MAP</div>
+                <Link href="/Favourite">
+                    <div className="text-md underline decoration-2 cursor-pointer text-[white] decoration-red-500">EXPLORE MAP</div>
+                </Link>
+                
             </Box>
         </Box>
     );
