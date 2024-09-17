@@ -7,24 +7,26 @@ import Checkbox from '@mui/material/Checkbox';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 interface FavouriteCardProps {
+  id: number;
   title: string;
   price: number;
   description: string;
   imageUrl: string;
-  onSelect: () => void;
-  onUnSelect: () => void;
+  onSelect: (id: number) => void;
+  onUnSelect: (id: number) => void;
 }
 
-export const FavouriteCard: React.FC<FavouriteCardProps> = ({ title, price, description, imageUrl, onSelect, onUnSelect }) => {
+export const FavouriteCard: React.FC<FavouriteCardProps> = ({ id, title, price, description, imageUrl, onSelect, onUnSelect }) => {
     const [checked, setChecked] = React.useState(false);
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = event.target.checked;
+        const id = event.target.value;
         setChecked(isChecked);
         if (isChecked) {
-            onSelect();
+            onSelect(Number(id));
         } else {
-            onUnSelect();
+            onUnSelect(Number(id));
         }
     };
 
@@ -46,6 +48,7 @@ export const FavouriteCard: React.FC<FavouriteCardProps> = ({ title, price, desc
                         <Checkbox
                             {...label}
                             sx={{ '& .MuiSvgIcon-root': { fontSize: 28 }, paddingLeft: 0, paddingBottom: 0 }}
+                            value={id}
                             checked={checked}
                             onChange={handleCheckboxChange}
                         />

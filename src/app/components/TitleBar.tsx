@@ -8,9 +8,10 @@ import "@fontsource/literata";
 
 interface TitleBarProps {
     isSelect: boolean;
+    onExport: () => void;
 }
 
-const TitleBar: React.FC<TitleBarProps> = ({ isSelect }) => {
+const TitleBar: React.FC<TitleBarProps> = ({ isSelect, onExport }) => {
     return (
         <Box sx={{ position: 'relative', width: '100%', padding: '80px 25px 0 25px' }}>
             {/* Background image and overlay */}
@@ -21,7 +22,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect }) => {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    backgroundImage: 'url(https://static2.bigstockphoto.com/7/9/2/large1500/297327124.jpg)',
+                    backgroundImage: 'url(https://www.tasteatlas.com/Content/layout/images/home-page/home-map.svg)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     zIndex: 0, // Background is below the content
@@ -86,7 +87,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect }) => {
                 />
                 <Box className='flex flex-row gap-x-5 mb-8'>
                     <Button className='bg-yellow-400 text-black font-bold w-[180px] h-[50px]' variant="contained" startIcon={<SelectAllIcon />}>Select All</Button>
-                    <Button className='bg-green-700 font-bold w-[180px] h-[50px]' variant="contained" endIcon={<FileDownloadIcon />} disabled={!isSelect} >Export CSV</Button>
+                    <Button className='bg-green-700 font-bold w-[180px] h-[50px]' variant="contained" endIcon={<FileDownloadIcon />} disabled={!isSelect} onClick={onExport} >Export CSV</Button>
                 </Box>
                 <hr className='w-4/5 mb-4 bg-black' />
                 <hr className='w-3/5' />
