@@ -48,6 +48,7 @@ export default function Home() {
             >
               Greatest Food of All Time!
             </Typography>
+            <Carousel />
           
           </Box>
         </Box>
