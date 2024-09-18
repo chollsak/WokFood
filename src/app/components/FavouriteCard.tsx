@@ -4,20 +4,23 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import Checkbox from '@mui/material/Checkbox';
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import FlagIcon from '@mui/icons-material/Flag';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 interface FavouriteCardProps {
   id: number;
   title: string;
-  price: number;
+  type: string;
+  country: string;
   description: string;
   imageUrl: string;
   onSelect: (id: number) => void;
   onUnSelect: (id: number) => void;
 }
 
-export const FavouriteCard: React.FC<FavouriteCardProps> = ({ id, title, price, description, imageUrl, onSelect, onUnSelect }) => {
+export const FavouriteCard: React.FC<FavouriteCardProps> = ({ id, title, type, country, description, imageUrl, onSelect, onUnSelect }) => {
     const [checked, setChecked] = React.useState(false);
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,10 +57,15 @@ export const FavouriteCard: React.FC<FavouriteCardProps> = ({ id, title, price, 
                             onChange={handleCheckboxChange}
                         />
                     </Box>
+                    <Box className='flex justify-between mb-2 mr-[10px]'>
+                        <Typography variant="body1" color="text.secondary">
+                            <LocalDiningIcon className='mr-1'/>{type}
+                        </Typography>
+                        <Typography variant="body1" color="text.secondary">
+                            <FlagIcon className='mr-1'/>{country}
+                        </Typography>
+                    </Box>
                     <Typography variant="body1" color="text.secondary">
-                        ${price}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
                         {description}
                     </Typography>
                 </CardContent>

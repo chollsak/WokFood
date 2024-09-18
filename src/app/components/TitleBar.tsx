@@ -8,12 +8,41 @@ import "@fontsource/literata";
 
 interface TitleBarProps {
     isSelect: boolean;
+    handleType: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+    handleCountry: (event: React.MouseEvent<HTMLAnchorElement>) => void;
     onExport: () => void;
+    handleFilter: () => void;
 }
 
-const TitleBar: React.FC<TitleBarProps> = ({ isSelect, onExport }) => {
+const TitleBar: React.FC<TitleBarProps> = ({ isSelect, handleType, handleCountry, onExport, handleFilter }) => {
     const [showCountryFilterMenu, setShowCountryFilterMenu] = useState(false);
     const [showTypeFilterMenu, setShowTypeFilterMenu] = useState(false);
+
+    const countryList = [
+        "Japan",
+        "Italy",
+        "Mexico",
+        "India",
+        "Spain",
+        "France",
+        "China",
+        "USA",
+        "Vietnam",
+        "Canada",
+        "Middle East",
+        "Hungary",
+        "Korea",
+        "England",
+        "Greece"
+    ]
+
+    const typeList = [
+        "Main",
+        "Dessert",
+        "Snack",
+        "Side",
+        "Beverage"
+    ]
 
     const handleCountryFilterMenu = () => {
         setShowCountryFilterMenu(!showCountryFilterMenu);
@@ -128,9 +157,18 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, onExport }) => {
                             boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
                             zIndex: 1,
                         }}>
-                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>Main</a>
-                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>Dessert</a>
-                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>Beverage</a>
+                            <a key="All" data-value="all" className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' onClick={handleType}>All</a>
+                            { typeList.map((item) => (
+                                <a 
+                                    key={item}
+                                    data-value={item.toLowerCase()}
+                                    className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' 
+                                    onClick={handleType}
+                                >
+                                    {item}
+                                </a>
+                            )) }
+                            
                         </Box> }
                     </Box>
                     <Box className='relative'>
@@ -159,14 +197,22 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, onExport }) => {
                             boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
                             zIndex: 1,
                         }}>
-                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>China</a>
-                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>Japan</a>
-                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>USA</a>
+                            <a key="All" data-value="all" className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' onClick={handleCountry}>All</a>
+                            { countryList.map((item) => (
+                                <a 
+                                    key={item}
+                                    data-value={item.toLowerCase()}
+                                    className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' 
+                                    onClick={handleCountry}
+                                >
+                                    {item}
+                                </a>
+                            )) }
                         </Box> }
                     </Box>
                 </Box>
                 <Box className='flex flex-row gap-x-5 mb-8'>
-                    <Button className='bg-yellow-400 text-black font-bold w-[180px] h-[50px]' variant="contained" startIcon={<SelectAllIcon />}>Select All</Button>
+                    <Button className='bg-yellow-400 text-black font-bold w-[180px] h-[50px]' variant="contained" startIcon={<SelectAllIcon />} onClick={handleFilter}>Select All</Button>
                     <Button className='bg-green-700 font-bold w-[180px] h-[50px]' variant="contained" endIcon={<FileDownloadIcon />} disabled={!isSelect} onClick={onExport} >Export CSV</Button>
                 </Box>
                 <hr className='w-4/5 mb-4 bg-black' />
