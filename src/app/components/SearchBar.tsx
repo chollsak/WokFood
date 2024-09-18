@@ -1,10 +1,18 @@
 import { Box, TextField, Typography, InputAdornment, Button, Link } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import { Playfair_Display } from 'next/font/google'; // Import Playfair Display from next/font
+
+// Import and configure Playfair Display font
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '700'], // Specify the weights you need
+  style: ['normal'], // Specify the styles you need
+});
 
 
 export const SearchBar: React.FC = () => {
     return (
-        <Box sx={{ position: 'relative', width: '100%', height: '420px' }}>
+        <Box sx={{ position: 'relative', width: '100%', height: '320px' }}>
 <Box
   sx={{
     position: 'absolute',
@@ -37,24 +45,25 @@ export const SearchBar: React.FC = () => {
                     justifyContent: 'center',
                     color: 'white',
                     fontSize: '1.5rem',
-                    gap: '70px',
+                    gap: '30px',
                     height: '100%',
                     zIndex: 1 // Ensures the content is above the background
                 }}
             >
-                <Typography variant="h2" className='drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' sx={{
-                    fontFamily: 'Literata, serif',
+                <Typography variant="h3" className='drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' sx={{
+                    fontFamily: playfairDisplay.style.fontFamily,
                     fontWeight: '600',
                     color: 'white'
                     
                 }}>Travel Global, Eat Local.</Typography>
                 <TextField
+                    size="small"
                     variant="outlined"
                     placeholder="Search location of food"
                     sx={{
-                        width: '800px',
+                        width: '600px',
                         backgroundColor: 'white',
-                        borderRadius: '50px',
+                        borderRadius: '20px',
                         '& .MuiOutlinedInput-root': {
                             border: 'none', // Remove the border
                             '& fieldset': {
@@ -75,7 +84,7 @@ export const SearchBar: React.FC = () => {
                     }}
                 />
                 <Link href="/Favourite">
-                    <div className="text-md underline decoration-2 cursor-pointer text-[white] decoration-red-500">EXPLORE MAP</div>
+                    <div className="text-sm underline decoration-2 cursor-pointer text-[white] decoration-red-500">EXPLORE MAP</div>
                 </Link>
                 
             </Box>

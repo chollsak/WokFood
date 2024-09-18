@@ -40,14 +40,15 @@ export const Navbar: React.FC = () => {
                 zIndex:'5'
             }}
         >
+
             <Box className="flex justify-center items-center">
                 <Box className="flex justify-center">
-                    <Box component="img" className="p-1" src="/img/logo.png" sx={{ width: '150px', marginRight: '-20px' }} />
-                    <Box component="img" className="p-1 mt-5" src="/img/wok4.png" sx={{ width: '200px', height: '60px' }} />
+                    <Box component="img" className="p-1" src="/img/logo.png" sx={{ width: '80px', marginRight: '-20px' }} />
+                    <Box component="img" className="p-1 mt-5" src="/img/wok4.png" sx={{ width: '100px', height: '30px' }} />
                 </Box>
             </Box>
 
-            <Box className="flex gap-28 justify-center p-2 pb-4">
+            <Box className="flex gap-28 justify-center p-4 pb-4">
                 <Link href="/">
                     <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">Home</div>
                 </Link>

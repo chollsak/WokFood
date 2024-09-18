@@ -18,11 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
         <head>
+          
         <link rel="icon" href="/img/logo.png" />
       </head>
       <body className={poppins.className}>
         <Navbar />
-        <div className="w-full h-40 bg-white">
+        <div className="w-full h-24 bg-white">
         </div>
         
           {children}

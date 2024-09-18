@@ -49,13 +49,13 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect }) => {
                     zIndex: 1 // Ensures the content is above both background and overlay
                 }}
             >
-                <Typography variant="h2" sx={{
-                    fontFamily: 'Literata, serif',
+                <Typography variant="h2" className='drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' sx={{
+                    fontFamily: '',
                     fontWeight: '600',
                     color: 'white',
                     marginBottom: '2.2rem',
                     zIndex: 2
-                }}>My Favourite Foods</Typography>
+                }}>CSV Exporter</Typography>
                 <TextField
                     variant="outlined"
                     placeholder="Search your favourite foods"
