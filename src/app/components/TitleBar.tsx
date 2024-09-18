@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, TextField, Typography, InputAdornment, Button } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import SelectAllIcon from '@mui/icons-material/SelectAll';
@@ -12,6 +12,22 @@ interface TitleBarProps {
 }
 
 const TitleBar: React.FC<TitleBarProps> = ({ isSelect, onExport }) => {
+    const [showCountryFilterMenu, setShowCountryFilterMenu] = useState(false);
+    const [showTypeFilterMenu, setShowTypeFilterMenu] = useState(false);
+
+    const handleCountryFilterMenu = () => {
+        setShowCountryFilterMenu(!showCountryFilterMenu);
+    }
+
+    const handleTypeFilterMenu = () => {
+        setShowTypeFilterMenu(!showTypeFilterMenu);
+    }
+
+    const handleCloseMenu = () => {
+        setShowTypeFilterMenu(false);
+        setShowCountryFilterMenu(false);
+    }
+
     return (
         <Box sx={{ position: 'relative', width: '100%', padding: '80px 25px 0 25px' }}>
             {/* Background image and overlay */}
@@ -65,7 +81,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, onExport }) => {
                         backgroundColor: 'white',
                         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
                         borderRadius: '50px',
-                        marginBottom: '2rem',
+                        marginBottom: '1rem',
                         '& .MuiOutlinedInput-root': {
                             border: 'none',
                             '& fieldset': {
@@ -85,6 +101,70 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, onExport }) => {
                         }
                     }}
                 />
+                <Box className='flex gap-x-10 text-white'>
+                    <Box className='relative'>
+                        <Typography onClick={handleTypeFilterMenu}
+                        sx={{
+                            fontFamily: 'Literata, serif',
+                            fontWeight: '200',
+                            color: 'white',
+                            marginBottom: '1rem',
+                            zIndex: 2,
+                            textDecoration: "underline",
+                            textDecorationColor: "#ef4444",
+                            textDecorationThickness: "2px",
+                            cursor: "pointer",
+                        }}>
+                            By Food Type
+                        </Typography>
+                        { showTypeFilterMenu && 
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            position: "absolute",
+                            right: 0,
+                            backgroundColor: "#f1f1f1",
+                            minWidth: "100px",
+                            boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
+                            zIndex: 1,
+                        }}>
+                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>Main</a>
+                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>Dessert</a>
+                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>Beverage</a>
+                        </Box> }
+                    </Box>
+                    <Box className='relative'>
+                    <Typography onClick={handleCountryFilterMenu}
+                    sx={{
+                        fontFamily: 'Literata, serif',
+                        fontWeight: '200',
+                        color: 'white',
+                        marginBottom: '1rem',
+                        zIndex: 2,
+                        textDecoration: "underline",
+                        textDecorationColor: "#ef4444",
+                        textDecorationThickness: "2px",
+                        cursor: "pointer",
+                    }}>
+                        By Country
+                    </Typography>
+                    { showCountryFilterMenu && 
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            position: "absolute",
+                            left: 0,
+                            backgroundColor: "#f1f1f1",
+                            minWidth: "100px",
+                            boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
+                            zIndex: 1,
+                        }}>
+                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>China</a>
+                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>Japan</a>
+                            <a className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base'>USA</a>
+                        </Box> }
+                    </Box>
+                </Box>
                 <Box className='flex flex-row gap-x-5 mb-8'>
                     <Button className='bg-yellow-400 text-black font-bold w-[180px] h-[50px]' variant="contained" startIcon={<SelectAllIcon />}>Select All</Button>
                     <Button className='bg-green-700 font-bold w-[180px] h-[50px]' variant="contained" endIcon={<FileDownloadIcon />} disabled={!isSelect} onClick={onExport} >Export CSV</Button>

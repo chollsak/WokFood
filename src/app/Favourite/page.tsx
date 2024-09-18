@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import TitleBar from '../components/TitleBar';
 import ManageFavBar from '../components/ManageFavBar';;
-import { FoodCard } from '../components/FoodCard';
 import { FavouriteCard } from '../components/FavouriteCard';
 
 const Favourite: React.FC = () => {

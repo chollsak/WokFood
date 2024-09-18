@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Button, CardActions, Box, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ImportExportIcon from '@mui/icons-material/ImportExport';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import Checkbox from '@mui/material/Checkbox';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -61,8 +62,11 @@ export const FavouriteCard: React.FC<FavouriteCardProps> = ({ id, title, price, 
                     </Typography>
                 </CardContent>
                 <Box className='flex justify-end p-[16px]'>
-                    <IconButton aria-label="delete"  size="large" >
-                        <ImportExportIcon fontSize="inherit" />
+                    <IconButton aria-label="up"  size="large" >
+                        <KeyboardDoubleArrowUpIcon fontSize="inherit" />
+                    </IconButton>
+                    <IconButton aria-label="up"  size="large" >
+                        <KeyboardDoubleArrowDownIcon fontSize="inherit" />
                     </IconButton>
                     <IconButton aria-label="delete"  size="large" >
                         <DeleteIcon fontSize="inherit" />
