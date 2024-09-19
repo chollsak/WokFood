@@ -3,18 +3,21 @@ import { Box, TextField, Typography, InputAdornment, Button } from "@mui/materia
 import SearchIcon from '@mui/icons-material/Search';
 import SelectAllIcon from '@mui/icons-material/SelectAll';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 import "@fontsource/literata";
 
 interface TitleBarProps {
     isSelect: boolean;
+    type: string;
+    country: string;
     handleType: (event: React.MouseEvent<HTMLAnchorElement>) => void;
     handleCountry: (event: React.MouseEvent<HTMLAnchorElement>) => void;
     onExport: () => void;
     handleFilter: () => void;
 }
 
-const TitleBar: React.FC<TitleBarProps> = ({ isSelect, handleType, handleCountry, onExport, handleFilter }) => {
+const TitleBar: React.FC<TitleBarProps> = ({ isSelect, type, country, handleType, handleCountry, onExport, handleFilter }) => {
     const [showCountryFilterMenu, setShowCountryFilterMenu] = useState(false);
     const [showTypeFilterMenu, setShowTypeFilterMenu] = useState(false);
 
@@ -137,14 +140,13 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, handleType, handleCountry
                             fontFamily: 'Literata, serif',
                             fontWeight: '200',
                             color: 'white',
-                            marginBottom: '1rem',
                             zIndex: 2,
                             textDecoration: "underline",
                             textDecorationColor: "#ef4444",
                             textDecorationThickness: "2px",
                             cursor: "pointer",
                         }}>
-                            By Food Type
+                            Food Type ({type}) <ArrowDropDownIcon />
                         </Typography>
                         { showTypeFilterMenu && 
                         <Box sx={{
@@ -153,15 +155,15 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, handleType, handleCountry
                             position: "absolute",
                             right: 0,
                             backgroundColor: "#f1f1f1",
-                            minWidth: "100px",
+                            minWidth: "150px",
                             boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
                             zIndex: 1,
                         }}>
-                            <a key="All" data-value="all" className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' onClick={handleType}>All</a>
+                            <a key="All" data-value="All" className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' onClick={handleType}>All</a>
                             { typeList.map((item) => (
                                 <a 
                                     key={item}
-                                    data-value={item.toLowerCase()}
+                                    data-value={item}
                                     className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' 
                                     onClick={handleType}
                                 >
@@ -177,14 +179,13 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, handleType, handleCountry
                         fontFamily: 'Literata, serif',
                         fontWeight: '200',
                         color: 'white',
-                        marginBottom: '1rem',
                         zIndex: 2,
                         textDecoration: "underline",
                         textDecorationColor: "#ef4444",
                         textDecorationThickness: "2px",
                         cursor: "pointer",
                     }}>
-                        By Country
+                        Country ({country}) <ArrowDropDownIcon />
                     </Typography>
                     { showCountryFilterMenu && 
                         <Box sx={{
@@ -193,15 +194,15 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, handleType, handleCountry
                             position: "absolute",
                             left: 0,
                             backgroundColor: "#f1f1f1",
-                            minWidth: "100px",
+                            minWidth: "150px",
                             boxShadow: "0px 8px 16px 0px rgba(0,0,0,0.2)",
                             zIndex: 1,
                         }}>
-                            <a key="All" data-value="all" className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' onClick={handleCountry}>All</a>
+                            <a key="All" data-value="All" className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' onClick={handleCountry}>All</a>
                             { countryList.map((item) => (
                                 <a 
                                     key={item}
-                                    data-value={item.toLowerCase()}
+                                    data-value={item}
                                     className='text-black py-[10px] px-[12px] no-underline cursor-pointer text-base' 
                                     onClick={handleCountry}
                                 >
@@ -211,7 +212,7 @@ const TitleBar: React.FC<TitleBarProps> = ({ isSelect, handleType, handleCountry
                         </Box> }
                     </Box>
                 </Box>
-                <Box className='flex flex-row gap-x-5 mb-8'>
+                <Box className='flex flex-row gap-x-5 mb-8 mt-4'>
                     <Button className='bg-yellow-400 text-black font-bold w-[180px] h-[50px]' variant="contained" startIcon={<SelectAllIcon />} onClick={handleFilter}>Select All</Button>
                     <Button className='bg-green-700 font-bold w-[180px] h-[50px]' variant="contained" endIcon={<FileDownloadIcon />} disabled={!isSelect} onClick={onExport} >Export CSV</Button>
                 </Box>

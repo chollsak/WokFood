@@ -10,8 +10,8 @@ const Favourite: React.FC = () => {
     const [isSelect, setIsSelect] = useState(false);
     const [focusCount, setFocusCount] = useState(0);
     const [exportIdList, setExportIdList] = useState<number[]>([]);
-    const [country, setCountry] = useState<string>("all");
-    const [type, setType] = useState<string>("all");
+    const [country, setCountry] = useState<string>("All");
+    const [type, setType] = useState<string>("All");
 
     const foodList = [
         {
@@ -208,16 +208,16 @@ const Favourite: React.FC = () => {
         <main>
             <Box className=' flex justify-center'>
                 <Box className=' w-full  relative'>
-                    <TitleBar isSelect={isSelect} handleType={handleType} handleCountry={handleCountry} handleFilter={handleFilter} onExport={handleExport} />
+                    <TitleBar isSelect={isSelect} type={type} country={country} handleType={handleType} handleCountry={handleCountry} handleFilter={handleFilter} onExport={handleExport} />
                     <Box className='flex flex-col gap-y-8 w-full mt-10 mb-24'>
                         { foodList.filter((item) => {
                             return (type.toLowerCase() === 'all' && country.toLowerCase() === 'all')
                             ? item
                             : (type.toLowerCase() === 'all' && country.toLowerCase() !== 'all') 
-                            ? item.country.toLowerCase().includes(country) 
+                            ? item.country.toLowerCase().includes(country.toLowerCase()) 
                             : (type.toLowerCase() !== 'all' && country.toLowerCase() === 'all')
-                            ? item.dishType.toLowerCase().includes(type)
-                            : item.country.toLowerCase().includes(country) && item.dishType.toLowerCase().includes(type);
+                            ? item.dishType.toLowerCase().includes(type.toLowerCase())
+                            : item.country.toLowerCase().includes(country.toLowerCase()) && item.dishType.toLowerCase().includes(type.toLowerCase());
                         }).map((item) => (
                             <FavouriteCard
                                 key = {item.id}
