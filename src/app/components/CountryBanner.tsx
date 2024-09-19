@@ -1,8 +1,15 @@
 'use client'
 
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {Button} from '@mui/material';
+import { Playfair_Display } from 'next/font/google';
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '700'], // Specify the weights you need
+  style: ['normal'], // Specify the styles you need
+});
 
 interface CountryBannerProps {
   countryName: string;
@@ -32,9 +39,17 @@ export const CountryBanner: React.FC<CountryBannerProps> = ({
     }}
   />
       <Box className='text-white'>
-        <h1 className='text-3xl font-semibold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>
-          {countryName}
-        </h1>
+          <Typography 
+            variant='h3'
+            sx={{
+              fontFamily: playfairDisplay.style.fontFamily, // Apply the Playfair Display font
+              fontWeight: '800',
+              color: 'white',
+              textAlign:'center'
+            }}
+          >
+            {countryName}
+          </Typography>
         <Button className="w-full mt-7 bg-yellow-400 text-black" variant="contained">Add All</Button>
       </Box>
     </Box>

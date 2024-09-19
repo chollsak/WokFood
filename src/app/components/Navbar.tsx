@@ -55,9 +55,11 @@ export const Navbar: React.FC = () => {
                 <Link href="/Favourite">
                     <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">FoodFinder</div>
                 </Link>
-                <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">FoodMap</div>
                 <Link href="/SearchResult">
-                    <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">Search Result</div>
+                    <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">SearchResult</div>
+                </Link>
+                <Link href="/Cart">
+                    <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">MyCart</div>
                 </Link>
             </Box>
         </Box>

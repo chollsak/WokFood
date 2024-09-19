@@ -5,6 +5,7 @@ import { Card, CardContent, Typography, Button, CardMedia, Box } from '@mui/mate
 import ReactCountryFlag from "react-country-flag"
 
 import { Playfair_Display } from 'next/font/google'; // Import Playfair Display from next/font
+import CardFood from './CardFood';
 
 // Import and configure Playfair Display font
 const playfairDisplay = Playfair_Display({
@@ -86,20 +87,7 @@ const FoodMenuCarousel: React.FC = () => {
         keyBoardControl
       >
         {foodMenu.map((item, index) => (
-            <Box className="p-2 cursor-pointer">
-                <Box component={'img'} src={item.image} sx={{ width: '100%', height: 180, objectFit: 'cover' }}/>
-                <div className='mt-4'>
-                    <Typography variant='h5' sx={{fontFamily: playfairDisplay.style.fontFamily,
-                                      fontWeight: '800',
-                                      color: 'black',
-                    }}>{item.title}</Typography>
-                    <div className='flex items-start gap-2 mb-4'>
-                         <ReactCountryFlag countryCode="IT" style={{marginTop:'1px'}} svg/>
-                         <span className='text-sm text-gray-500'>{item.country.toUpperCase()}</span>
-                    </div>
-                    <p className='text-sm text-gray-500'>{truncateText(item.description, 80)}</p>
-                </div>
-            </Box>
+          <CardFood key={item.title} image={item.image} name={item.title} country={item.country} description={item.description} />
         ))}
       </Carousel>
     </div>
