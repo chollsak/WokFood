@@ -23,8 +23,8 @@ export default function RootLayout({
       </head>
       <body className={poppins.className}>
         <Navbar />
-        <div className="w-full h-24 bg-white">
-        </div>
+        <div className="w-full h-24 bg-white" />
+
         
           {children}
       </body>

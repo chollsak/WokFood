@@ -16,7 +16,10 @@ const playfairDisplay = Playfair_Display({
   style: ['normal'], // Specify the styles you need
 });
 
-export default function Home() {
+export default async function Home() {
+
+  
+
   return (
     <main>
       <SearchBar />
@@ -255,6 +258,7 @@ export default function Home() {
 
 
       <Box sx={{ height: '5000px' }}></Box>
+      
     </main>
   );
 }
