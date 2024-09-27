@@ -15,7 +15,6 @@ const FoodbyCountryPage: React.FC = () => {
       setFoods(JSON.parse(storedFoods));  // Load from local storage
       setLoading(false);
     } else {
-      // If not in local storage, fetch from the server
       const fetchFoods = async () => {
         try {
           const response = await fetch('http://127.0.0.1:8000/foods/', {

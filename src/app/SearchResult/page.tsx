@@ -94,7 +94,7 @@ const SearchResult: React.FC = () => {
           >
             Explore Your {japanFoods[0].country} Dish!
           </Typography>
-          <Box className="grid grid-cols-4 justify-items-center gap-x-8 gap-y-8 relative">
+          <Box className="grid grid-cols-4 justify-items-center relative">
           {japanFoods.map((food, index) => (
               <CardFood
                 key={index}
