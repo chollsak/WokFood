@@ -1,4 +1,3 @@
-'use client'
 
 import React from 'react';
 import { Box, Typography } from '@mui/material';
@@ -12,6 +11,7 @@ type JapanFoods = {
   description: string;
   image: string;
   country : string
+  
 };
 
 // Mocked data for Japanese foods
@@ -100,8 +100,9 @@ const SearchResult: React.FC = () => {
                 key={index}
                 name={food.name}
                 description={food.description}
+                region='dsa'
                 image={food.image}
-                country={food.country}
+                foodId={'312312'}
               />
             ))}
           </Box>

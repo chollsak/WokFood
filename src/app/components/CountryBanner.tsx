@@ -4,6 +4,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import {Button} from '@mui/material';
 import { Playfair_Display } from 'next/font/google';
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
@@ -50,7 +51,31 @@ export const CountryBanner: React.FC<CountryBannerProps> = ({
           >
             {countryName}
           </Typography>
-        <Button className="w-full mt-7 bg-yellow-400 text-black" variant="contained">Add All</Button>
+
+          <div className='flex justify-center '> 
+          <Button
+                            variant="contained"
+                            sx={{
+                                borderRadius: '0px', // No border radius
+                                marginTop: '20px', // Margin on top for spacing
+                                color: 'gray', // Text color
+                                backgroundColor: 'white',
+                                textAlign:'center',
+                                boxShadow: 'none', // No shadow
+                                border: '1px solid', // Border style
+                                borderColor: 'gray', // Border color
+                                '&:hover': {
+                                    color:'#f8533d',
+                                    boxShadow: 'none', // Background color on hover
+                                    borderColor:'#f8533d'
+                                },
+                            }}
+                        // Handle button click
+                        >
+                            Add all to cart <InventoryIcon className='ml-1'/>
+                        </Button>
+          </div>
+                          
       </Box>
     </Box>
   );

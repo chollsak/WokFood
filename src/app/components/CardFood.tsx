@@ -1,9 +1,10 @@
-import React from 'react'
+'use client'
+import React from 'react';
 import { Playfair_Display } from 'next/font/google'; // Import Playfair Display from next/font
-import { Box,Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Make sure to import useRouter
 import ReactCountryFlag from 'react-country-flag';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link'
 
 const playfairDisplay = Playfair_Display({
     subsets: ['latin'],
@@ -16,230 +17,53 @@ const truncateText = (text: string, maxLength: number) => {
     return text.substring(0, maxLength) + '...';
 };
 
-const countryToCode = (countryName: string) => {
-    const countryCodes: { [key: string]: string } = {
-        Afghanistan: "AF",
-        Albania: "AL",
-        Algeria: "DZ",
-        Andorra: "AD",
-        Angola: "AO",
-        Argentina: "AR",
-        Armenia: "AM",
-        Australia: "AU",
-        Austria: "AT",
-        Azerbaijan: "AZ",
-        Bahamas: "BS",
-        Bahrain: "BH",
-        Bangladesh: "BD",
-        Barbados: "BB",
-        Belarus: "BY",
-        Belgium: "BE",
-        Belize: "BZ",
-        Benin: "BJ",
-        Bhutan: "BT",
-        Bolivia: "BO",
-        Bosnia_and_Herzegovina: "BA",
-        Botswana: "BW",
-        Brazil: "BR",
-        Brunei: "BN",
-        Bulgaria: "BG",
-        Burkina_Faso: "BF",
-        Burundi: "BI",
-        Cambodia: "KH",
-        Cameroon: "CM",
-        Canada: "CA",
-        Cape_Verde: "CV",
-        Central_African_Republic: "CF",
-        Chad: "TD",
-        Chile: "CL",
-        China: "CN",
-        Colombia: "CO",
-        Comoros: "KM",
-        Congo: "CG",
-        Costa_Rica: "CR",
-        Croatia: "HR",
-        Cuba: "CU",
-        Cyprus: "CY",
-        Czech_Republic: "CZ",
-        Denmark: "DK",
-        Djibouti: "DJ",
-        Dominica: "DM",
-        Dominican_Republic: "DO",
-        East_Timor: "TL",
-        Ecuador: "EC",
-        Egypt: "EG",
-        El_Salvador: "SV",
-        Equatorial_Guinea: "GQ",
-        Eritrea: "ER",
-        Estonia: "EE",
-        Eswatini: "SZ",
-        Ethiopia: "ET",
-        Fiji: "FJ",
-        Finland: "FI",
-        France: "FR",
-        Gabon: "GA",
-        Gambia: "GM",
-        Georgia: "GE",
-        Germany: "DE",
-        Ghana: "GH",
-        Greece: "GR",
-        Grenada: "GD",
-        Guatemala: "GT",
-        Guinea: "GN",
-        Guinea_Bissau: "GW",
-        Guyana: "GY",
-        Haiti: "HT",
-        Honduras: "HN",
-        Hungary: "HU",
-        Iceland: "IS",
-        India: "IN",
-        Indonesia: "ID",
-        Iran: "IR",
-        Iraq: "IQ",
-        Ireland: "IE",
-        Israel: "IL",
-        Italy: "IT",
-        Jamaica: "JM",
-        Japan: "JP",
-        Jordan: "JO",
-        Kazakhstan: "KZ",
-        Kenya: "KE",
-        Kiribati: "KI",
-        Korea_North: "KP",
-        Korea_South: "KR",
-        Kuwait: "KW",
-        Kyrgyzstan: "KG",
-        Laos: "LA",
-        Latvia: "LV",
-        Lebanon: "LB",
-        Lesotho: "LS",
-        Liberia: "LR",
-        Libya: "LY",
-        Liechtenstein: "LI",
-        Lithuania: "LT",
-        Luxembourg: "LU",
-        Madagascar: "MG",
-        Malawi: "MW",
-        Malaysia: "MY",
-        Maldives: "MV",
-        Mali: "ML",
-        Malta: "MT",
-        Mauritania: "MR",
-        Mauritius: "MU",
-        Mexico: "MX",
-        Moldova: "MD",
-        Monaco: "MC",
-        Mongolia: "MN",
-        Montenegro: "ME",
-        Morocco: "MA",
-        Mozambique: "MZ",
-        Myanmar: "MM",
-        Namibia: "NA",
-        Nauru: "NR",
-        Nepal: "NP",
-        Netherlands: "NL",
-        New_Zealand: "NZ",
-        Nicaragua: "NI",
-        Niger: "NE",
-        Nigeria: "NG",
-        North_Macedonia: "MK",
-        Norway: "NO",
-        Oman: "OM",
-        Pakistan: "PK",
-        Palau: "PW",
-        Panama: "PA",
-        Papua_New_Guinea: "PG",
-        Paraguay: "PY",
-        Peru: "PE",
-        Philippines: "PH",
-        Poland: "PL",
-        Portugal: "PT",
-        Qatar: "QA",
-        Romania: "RO",
-        Russia: "RU",
-        Rwanda: "RW",
-        Saint_Kitts_and_Nevis: "KN",
-        Saint_Lucia: "LC",
-        Saint_Vincent_and_the_Grenadines: "VC",
-        Samoa: "WS",
-        San_Marino: "SM",
-        Sao_Tome_and_Principe: "ST",
-        Saudi_Arabia: "SA",
-        Senegal: "SN",
-        Serbia: "RS",
-        Seychelles: "SC",
-        Sierra_Leone: "SL",
-        Singapore: "SG",
-        Slovakia: "SK",
-        Slovenia: "SI",
-        Solomon_Islands: "SB",
-        Somalia: "SO",
-        South_Africa: "ZA",
-        Spain: "ES",
-        Sri_Lanka: "LK",
-        Sudan: "SD",
-        Suriname: "SR",
-        Sweden: "SE",
-        Switzerland: "CH",
-        Syria: "SY",
-        Taiwan: "TW",
-        Tajikistan: "TJ",
-        Tanzania: "TZ",
-        Thailand: "TH",
-        Togo: "TG",
-        Tonga: "TO",
-        Trinidad_and_Tobago: "TT",
-        Tunisia: "TN",
-        Turkey: "TR",
-        Turkmenistan: "TM",
-        Tuvalu: "TV",
-        Uganda: "UG",
-        Ukraine: "UA",
-        United_Arab_Emirates: "AE",
-        United_Kingdom: "GB",
-        United_States: "US",
-        Uruguay: "UY",
-        Uzbekistan: "UZ",
-        Vanuatu: "VU",
-        Vatican_City: "VA",
-        Venezuela: "VE",
-        Vietnam: "VN",
-        Yemen: "YE",
-        Zambia: "ZM",
-        Zimbabwe: "ZW"
-      };
-      
+const countryToImageUrl = (regionName: string) => {
+    const regionImages: { [key: string]: string } = {
+        oceania: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEJyYVK0P3AYZuiM-6sMQ4yOeEeJaRy3pt6n7MdtL1Tr-rYUi0ZAZ3I1xzd3eqRxFJvzM&usqp=CAU',
+        asia: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e305603b-4629-4f4c-a6f8-3be3f0731120/deqbfaj-f1772157-becc-45c9-ae91-3b0c810c2ffe.jpg/v1/fill/w_1024,h_774,q_75,strp/asia_union_republic_s_flag_by_mueandukdahan_deqbfaj-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9Nzc0IiwicGF0aCI6IlwvZlwvZTMwNTYwM2ItNDYyOS00ZjRjLWE2ZjgtM2JlM2YwNzMxMTIwXC9kZXFiZmFqLWYxNzcyMTU3LWJlY2MtNDVjOS1hZTkxLTNiMGM4MTBjMmZmZS5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.wY4Dr_TIQicXGr7pcD83mLNkEIVyYk6muZHfHQ17mq8',
+        "middle-east": 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bb5f3e6e-a9f0-45d9-9dfc-a77a77ccaf7d/dgv8itb-fbb168e3-28a8-4163-a76a-a78cdca56945.png/v1/fill/w_1280,h_854,q_80,strp/flag_of_middle_eastern__flag_of_middle_east__by_weqrrwqw_dgv8itb-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODU0IiwicGF0aCI6IlwvZlwvYmI1ZjNlNmUtYTlmMC00NWQ5LTlkZmMtYTc3YTc3Y2NhZjdkXC9kZ3Y4aXRiLWZiYjE2OGUzLTI4YTgtNDE2My1hNzZhLWE3OGNkY2E1Njk0NS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.VaHXo3BVTeNEqpd5bYOmn0Soi4ZscW_rzaypM6GD0uI',
+        africa: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Flag_of_the_African_Union.svg',
+        "south-america": 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_UNASUR.svg/640px-Flag_of_UNASUR.svg.png',
+        europe: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/810px-Flag_of_Europe.svg.png',
+        "north-america": 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/833b8afb-0ba8-40d5-9817-acddffeef181/dg4jmy9-268ba4a7-7b0c-4913-a9fe-afe4d12c7117.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzgzM2I4YWZiLTBiYTgtNDBkNS05ODE3LWFjZGRmZmVlZjE4MVwvZGc0am15OS0yNjhiYTRhNy03YjBjLTQ5MTMtYTlmZS1hZmU0ZDEyYzcxMTcucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.qVLEsjgaR8GJFVG0NEQLW_M_u8-LA0YI5Pe4sZig070',
+    };
     
-    return countryCodes[countryName] || ''; // Return an empty string if the country is not in the map
-  };
+    return regionImages[regionName] || ''; // Return an empty string if the region is not in the map
+};
 
 type CardProps = {
-    image: string
-    name: string
-    country: string
-    description: string
-}
+    image: string;
+    name: string;
+    region: string;
+    description: string;
+    foodId: string; 
+};
 
 export default function CardFood(props: CardProps) {
-    const countryCode = countryToCode(props.country); 
+    const router = useRouter(); // Get router instance
+    const regionImageUrl = countryToImageUrl(props.region);
+
+    const handleFoodClick = () => {
+        router.push(`/foodDetail/${props.region}/${props.foodId}`); // Adjust the path as necessary
+    };
 
     return (
-        <Link href={`/food-detials/${encodeURIComponent(props.name)}`} passHref>
-        <Box className="p-2 cursor-pointer">
+        <Box className="p-2 cursor-pointer" onClick={handleFoodClick}>
             <Box component={'img'} src={props.image} sx={{ width: '100%', height: 180, objectFit: 'cover' }} />
             <div className='mt-4'>
                 <Typography variant='h5' sx={{
                     fontFamily: playfairDisplay.style.fontFamily,
                     fontWeight: '800',
                     color: 'black',
-                }}>{props.name}</Typography>
+                }}>
+                    {truncateText(props.name, 30)} {/* Limit name to 30 characters */}
+                </Typography>
                 <div className='flex items-start gap-2 mb-4'>
-                    <ReactCountryFlag countryCode={countryCode} style={{ marginTop: '1px' }} svg />
-                    <span className='text-sm text-gray-500'>{props.country.toUpperCase()}</span>
+                    <img src={regionImageUrl} alt={`${props.region} flag`} style={{ marginTop: '1px', width: '24px', height: '16px' }} />
+                    <span className='text-sm text-gray-500'>{props.region.toUpperCase()}</span>
                 </div>
                 <p className='text-sm text-gray-500'>{truncateText(props.description, 80)}</p>
             </div>
         </Box>
-        </Link>
-    )
+    );
 }
