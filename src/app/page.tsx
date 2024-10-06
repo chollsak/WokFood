@@ -15,7 +15,7 @@ export default function Page() {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-
+      
       // Send data to your API to save in public/data/data.json
       const saveResponse = await fetch('/api/save-data', {
         method: 'POST',

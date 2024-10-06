@@ -33,6 +33,39 @@ const CartPage: React.FC = () => {
         localStorage.setItem('cart', JSON.stringify(updatedCart)); // Update localStorage
     };
 
+    const exportCartToCSV = async () => {
+        try {
+          // Get the cart from localStorage
+          const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      
+          const response = await fetch('/api/export-csv', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ cart }),
+          });
+      
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+          }
+      
+          const csvContent = await response.text();  // Get CSV as text
+      
+          // Create a blob from the CSV data
+          const blob = new Blob([csvContent], { type: 'text/csv' });
+      
+          // Create a temporary download link and trigger it
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = 'cart.csv';  // Filename for download
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } catch (error) {
+          console.error('Failed to export CSV:', error);
+        }
+      };
 
     if (loading) return <CircularProgress />; // Show loading spinner while fetching
 
@@ -89,7 +122,7 @@ const CartPage: React.FC = () => {
                 )}
                 {cart.length > 0 && (
                     <Box sx={{ marginTop: '20px', textAlign: 'right' }}>
-                        <Button variant="contained" sx={{ marginTop: '10px', borderRadius: '0px', backgroundColor:'#fbc800' }}>
+                        <Button variant="contained" sx={{ marginTop: '10px', borderRadius: '0px', backgroundColor:'#fbc800' }} onClick={() => exportCartToCSV()}>
                             Checkout
                         </Button>
                     </Box>
