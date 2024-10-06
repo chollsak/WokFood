@@ -33,7 +33,7 @@ export default function page() {
                 backgroundColor: '#f0f0f0'
             }}
         >
-            <Typography variant='h3' className='ml-40 mb-6' sx={{
+            <Typography variant='h3' className='text-center mb-6' sx={{
                 fontFamily: playfairDisplay.style.fontFamily,
                 fontWeight: '800',
             }}>SOURCE CODE</Typography>

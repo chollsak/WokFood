@@ -42,7 +42,7 @@ const countryToImageUrl = (regionName: string) => {
 
 // This function fetches data server-side based on params
 async function fetchFoodDetails(region: string, foodId: string) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'https://wok-food.vercel.app/'}/data/data.json`); // Adjust the path to your data
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'https://wok-food.vercel.app/' /*|| 'http://localhost:3000/'*/}/data/data.json`); // Adjust the path to your data
     const data = await response.json();
 
     // Find the food details based on region and foodId
