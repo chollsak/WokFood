@@ -337,7 +337,7 @@ export default function Region() {
                                         color: 'black',
 
                                     }}>MIDDLE-EAST</Typography>
-                                    <img src={regionImages.europe} alt={`${'params.region'} flag`} style={{ marginTop: '10px', marginLeft: '10px', width: '54px', height: '36px' }} />
+                                    <img src={regionImages['middle-east']} alt={`${'params.region'} flag`} style={{ marginTop: '10px', marginLeft: '10px', width: '54px', height: '36px' }} />
                                 </div>
 
                                 <div className='flex-col justify-center items-center mb-8 mt-6'>
