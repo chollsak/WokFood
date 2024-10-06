@@ -7,7 +7,6 @@ import "../globals.css";
 import src from 'node_modules/@emotion/styled/dist/declarations/src';
 import { Description, Star, StarBorder } from '@mui/icons-material';
 import ReactCountryFlag from 'react-country-flag';
-import Carousel from '../components/Carousel';
 import { SearchBar } from '../components/SearchBar';
 import AsiaCarousel from '../components/AsiaCarousel';
 import EuropeCarousel from '../components/EuropeCarousel';

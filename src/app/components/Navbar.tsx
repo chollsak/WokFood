@@ -66,7 +66,7 @@ export const Navbar: React.FC = () => {
                 <Link href="/cart">
                     <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">Cart</div>
                 </Link>
-                <Link href="/About">
+                <Link href="/about">
                     <div className="text-[#fbc800] font-semibold hover:font-black duration-150 hover:text-black">About</div>
                 </Link>
             </Box>

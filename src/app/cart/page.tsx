@@ -1,7 +1,9 @@
 'use client';
 import React from 'react';
-import { Box, Card, CardContent, Typography, Button, List, ListItem, ListItemText, Divider, CircularProgress } from '@mui/material';
+import { Box, Card, CardContent, Typography, Button, List, ListItem, ListItemText, Divider, CircularProgress, TextField } from '@mui/material';
 import { Playfair_Display } from 'next/font/google';
+import IosShareIcon from '@mui/icons-material/IosShare';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 interface CartItem {
     FoodId: number;
@@ -19,6 +21,7 @@ const playfairDisplay = Playfair_Display({
 const CartPage: React.FC = () => {
     const [cart, setCart] = React.useState<CartItem[]>([]);
     const [loading, setLoading] = React.useState(true);
+    const [searchQuery, setSearchQuery] = React.useState(''); // State to track search query
 
     // Fetch the cart items from localStorage
     React.useEffect(() => {
@@ -65,7 +68,25 @@ const CartPage: React.FC = () => {
         } catch (error) {
           console.error('Failed to export CSV:', error);
         }
-      };
+    };
+
+    const getTotalItems = () => {
+        return cart.length;
+    };
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(event.target.value.toLowerCase());
+    };
+
+    const filteredCart = cart.filter(item =>
+        item.FoodName.toLowerCase().includes(searchQuery)
+    );
+
+    const removeAllFromCart = () => {
+        setCart([]); // Clear the cart state
+        localStorage.removeItem('cart'); // Remove cart from localStorage
+    };
+
 
     if (loading) return <CircularProgress />; // Show loading spinner while fetching
 
@@ -76,7 +97,7 @@ const CartPage: React.FC = () => {
                 justifyContent: 'center',
                 alignItems: 'start',
                 marginTop:'50px',
-                height: '100vh',
+                height:'100%',
                 padding: '40px',
                 backgroundColor: '#f0f0f0'
             }}
@@ -91,18 +112,44 @@ const CartPage: React.FC = () => {
                     maxWidth: '1200px',
                 }}
             >
-                <Typography variant="h4" component="h2" sx={{
+                <div className='flex justify-between'>
+                    <Typography variant="h4" component="h2" sx={{
                     fontFamily: playfairDisplay.style.fontFamily,
                     fontWeight: '700',
                     marginBottom: '20px',
                 }}>
-                    CSV Export Cart
+                    CSV Export Cart ({getTotalItems()} foods selected)
                 </Typography>
-                {cart.length === 0 ? (
-                    <Typography variant="h6" color="gray">Your cart is empty</Typography>
+                {cart.length > 0 && (
+
+                    <Box sx={{ textAlign: 'right' }}>
+                        <Button variant="contained"  color='error' sx={{ borderRadius: '0px',marginRight:'10px' }} onClick={() => removeAllFromCart()}>
+                            Delete All <RemoveShoppingCartIcon/>
+                        </Button>
+                        <Button variant="contained" sx={{ borderRadius: '0px', backgroundColor:'#fbc800' }} onClick={() => exportCartToCSV()}>
+                            Checkout <IosShareIcon/>
+                        </Button>
+                    </Box> 
+                )}
+                </div>
+
+                {/* Search Bar */}
+                {cart.length > 0 && (
+                    <TextField
+                        label="Search food by name"
+                        variant="outlined"
+                        size='small'
+                        sx={{ marginBottom: '20px', width:'50%' }}
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    />
+                )}
+
+                {filteredCart.length === 0 ? (
+                    <Typography variant="h6" color="gray">No food items match your search</Typography>
                 ) : (
                     <List>
-                        {cart.map(item => (
+                        {filteredCart.map(item => (
                             <React.Fragment key={item.FoodId}>
                                 <ListItem>
                                     <img src={item.FoodImageUrl} alt={item.FoodName} style={{ width: '50px', height: '50px', marginRight: '16px' }} />
@@ -118,14 +165,6 @@ const CartPage: React.FC = () => {
                             </React.Fragment>
                         ))}
                     </List>
-
-                )}
-                {cart.length > 0 && (
-                    <Box sx={{ marginTop: '20px', textAlign: 'right' }}>
-                        <Button variant="contained" sx={{ marginTop: '10px', borderRadius: '0px', backgroundColor:'#fbc800' }} onClick={() => exportCartToCSV()}>
-                            Checkout
-                        </Button>
-                    </Box>
                 )}
             </Box>
         </main>
