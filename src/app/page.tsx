@@ -41,7 +41,8 @@ export default function Page() {
       });
 
       if (!saveResponse.ok) {
-        throw new Error('Failed to save data');
+        router.push('/home')
+        throw new Error('Auto fetch to Site');
       }
 
       // Redirect to /home
