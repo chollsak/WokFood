@@ -160,7 +160,7 @@ export const SearchBar: React.FC = () => {
                         }
                     }}
                 />
-                <Link href="/Favourite">
+                <Link href="/Region">
                     <div className="text-sm underline decoration-2 cursor-pointer text-[white] decoration-red-500">EXPLORE MAP</div>
                 </Link>
             </Box>
