@@ -140,7 +140,7 @@ const SearchResult = () => {
                 },
               }}
               onClick={() => {
-                addAllToCart(regionData, 'Asia');
+                addAllToCart(regionData, 'Europe');
               }}
             >
               Add all to cart <InventoryIcon className="ml-1" />
