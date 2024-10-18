@@ -188,7 +188,7 @@ export default function Page() {
                     backgroundColor: loading ? '#888' : '#fbbd00',
                   },
                 }}
-                onClick={fetchData}
+                onClick={() => {router.push('/home')}}
                 disabled={loading} // Disable button when loading
               >
                 {loading ? (
